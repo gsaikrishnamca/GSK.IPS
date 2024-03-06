@@ -2,7 +2,8 @@ version: '3.4'
 
 services:
   identity.api:
-    image: ${DOCKER_REGISTRY-}identityapi
+    container_name: cnidentityapi
+    image: ${DOCKER_REGISTRY-}img-identityapi
     build:
       context: .
       dockerfile: Identity.API/Dockerfile
@@ -13,7 +14,8 @@ services:
         condition: service_healthy
 
   webhookclient:
-    image: ${DOCKER_REGISTRY-}webhookclient
+    container_name: cnwebhookclient
+    image: ${DOCKER_REGISTRY-}img-webhookclient
     build:
       context: .
       dockerfile: WebhookClient/Dockerfile
@@ -24,7 +26,8 @@ services:
         condition: service_healthy
 
   webhooks.api:
-    image: ${DOCKER_REGISTRY-}webhooksapi
+    container_name: cnwebhooksapi
+    image: ${DOCKER_REGISTRY-}img-webhooksapi
     build:
       context: .
       dockerfile: Webhooks.API/Dockerfile
@@ -37,6 +40,7 @@ services:
   db:
     image: postgres
     restart: always
+    container_name: db
     environment:
       POSTGRES_DB: IdentityDB
       POSTGRES_USER: postgres
@@ -48,7 +52,7 @@ services:
     networks:
       - adminer-network
     healthcheck:
-      test: ["CMD-SHELL","pg_isready"]
+      test: ["CMD-SHELL","psql -U postgres"]
       interval: 1s
       timeout: 5s
       retries: 10
