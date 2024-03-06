@@ -1,0 +1,67 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34031.279
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventBus", "EventBus\EventBus.csproj", "{50C3DB82-F7B4-422F-8B67-4BFB2246E341}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventBusRabbitMQ", "EventBusRabbitMQ\EventBusRabbitMQ.csproj", "{83536214-CED0-4BA4-94B7-4642AEC925DF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GSK.IPS.ServiceDefaults", "GSK.IPS.ServiceDefaults\GSK.IPS.ServiceDefaults.csproj", "{6A00703B-3340-48A1-9246-E6740974BB0C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity.API", "Identity.API\Identity.API.csproj", "{CE641280-06D7-4C79-A81D-78DC4A692AB2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IntegrationEventLogEF", "IntegrationEventLogEF\IntegrationEventLogEF.csproj", "{245A94D8-C3F4-4254-ACEC-C38F3C49CA57}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebhookClient", "WebhookClient\WebhookClient.csproj", "{7D5D3737-A89B-44EF-A463-BFD482CB84B1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Webhooks.API", "Webhooks.API\Webhooks.API.csproj", "{CC47E533-CA59-440E-8A3C-4844728E8C2A}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{6050AC97-0325-49D8-8267-E8D361F7AE01}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{50C3DB82-F7B4-422F-8B67-4BFB2246E341}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50C3DB82-F7B4-422F-8B67-4BFB2246E341}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50C3DB82-F7B4-422F-8B67-4BFB2246E341}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50C3DB82-F7B4-422F-8B67-4BFB2246E341}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83536214-CED0-4BA4-94B7-4642AEC925DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83536214-CED0-4BA4-94B7-4642AEC925DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83536214-CED0-4BA4-94B7-4642AEC925DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83536214-CED0-4BA4-94B7-4642AEC925DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A00703B-3340-48A1-9246-E6740974BB0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A00703B-3340-48A1-9246-E6740974BB0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A00703B-3340-48A1-9246-E6740974BB0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A00703B-3340-48A1-9246-E6740974BB0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE641280-06D7-4C79-A81D-78DC4A692AB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE641280-06D7-4C79-A81D-78DC4A692AB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE641280-06D7-4C79-A81D-78DC4A692AB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE641280-06D7-4C79-A81D-78DC4A692AB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{245A94D8-C3F4-4254-ACEC-C38F3C49CA57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{245A94D8-C3F4-4254-ACEC-C38F3C49CA57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{245A94D8-C3F4-4254-ACEC-C38F3C49CA57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{245A94D8-C3F4-4254-ACEC-C38F3C49CA57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D5D3737-A89B-44EF-A463-BFD482CB84B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D5D3737-A89B-44EF-A463-BFD482CB84B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D5D3737-A89B-44EF-A463-BFD482CB84B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D5D3737-A89B-44EF-A463-BFD482CB84B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC47E533-CA59-440E-8A3C-4844728E8C2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC47E533-CA59-440E-8A3C-4844728E8C2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC47E533-CA59-440E-8A3C-4844728E8C2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC47E533-CA59-440E-8A3C-4844728E8C2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6050AC97-0325-49D8-8267-E8D361F7AE01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6050AC97-0325-49D8-8267-E8D361F7AE01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6050AC97-0325-49D8-8267-E8D361F7AE01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6050AC97-0325-49D8-8267-E8D361F7AE01}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {400D422D-9676-44DA-91D1-555F9A40CA14}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,72 @@
+version: '3.4'
+
+services:
+  identity.api:
+    image: ${DOCKER_REGISTRY-}identityapi
+    build:
+      context: .
+      dockerfile: Identity.API/Dockerfile
+    networks:
+      - adminer-network
+    depends_on:
+      db:
+        condition: service_healthy
+
+  webhookclient:
+    image: ${DOCKER_REGISTRY-}webhookclient
+    build:
+      context: .
+      dockerfile: WebhookClient/Dockerfile
+    networks:
+      - adminer-network
+    depends_on:
+      db:
+        condition: service_healthy
+
+  webhooks.api:
+    image: ${DOCKER_REGISTRY-}webhooksapi
+    build:
+      context: .
+      dockerfile: Webhooks.API/Dockerfile
+    networks:
+      - adminer-network
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: IdentityDB
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: example
+    ports:
+      - 8090:8090
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - adminer-network
+    healthcheck:
+      test: ["CMD-SHELL","pg_isready"]
+      interval: 1s
+      timeout: 5s
+      retries: 10
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    environment:
+      ADMINER_DEFAULT_SERVER: db
+    depends_on:
+      - db
+    networks:
+      - adminer-network
+
+volumes:
+ postgres-data:
+
+networks:
+  adminer-network:
