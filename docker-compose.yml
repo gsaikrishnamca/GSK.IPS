@@ -1,14 +1,21 @@
 version: '3.4'
 
+# Services - Creating services using Docker compose
 services:
+  # Identity API Service
   identity.api:
+    # Container name displayed in Docker
     container_name: cnidentityapi
+    # Image name displayed in Docker
     image: ${DOCKER_REGISTRY-}img-identityapi
+    # Run Docker build command with parameters
     build:
       context: .
       dockerfile: Identity.API/Dockerfile
+    # Making sure that all the microservices are on same network
     networks:
       - adminer-network
+    # Identity service will run once db service is up and running
     depends_on:
       db:
         condition: service_healthy
@@ -68,6 +75,22 @@ services:
       - db
     networks:
       - adminer-network
+  
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: "rabbitmq"
+    environment:
+            - "RABBITMQ_DEFAULT_PASS=guest"
+            - "RABBITMQ_DEFAULT_USER=guest"
+    read_only: false
+    ports:
+        - 5672:5672
+        - 15672:15672
+    volumes:
+        - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+        - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+    networks:
+        - adminer-network
 
 volumes:
  postgres-data:

@@ -238,6 +238,7 @@ public class RabbitMQEventBus(
                 logger.LogInformation("Starting RabbitMQ connection on a background thread");
 
                 _rabbitMQConnection = serviceProvider.GetRequiredService<IConnection>();
+                
                 if (!_rabbitMQConnection.IsOpen)
                 {
                     return;
