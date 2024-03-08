@@ -8,7 +8,8 @@
         "webhookclient": "StartDebugging",
         "webhooks.api": "StartDebugging",
         "adminer": "StartWithoutDebugging",
-        "db": "StartWithoutDebugging"
+        "db": "StartWithoutDebugging",
+        "rabbitmq": "StartWithoutDebugging"
       }
     }
   }

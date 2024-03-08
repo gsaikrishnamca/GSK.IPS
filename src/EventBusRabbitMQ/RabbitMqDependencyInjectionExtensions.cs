@@ -25,10 +25,9 @@ public static class RabbitMqDependencyInjectionExtensions
         //{
         //    ((ConnectionFactory)factory).DispatchConsumersAsync = true;
         //});
+        string eventBusConnection = builder.Configuration["ConnectionStrings:" + connectionName];
 
-        builder.Configuration.GetSection(connectionName);
-
-        builder.Services.AddSingleton(GetRabbitMqConnection());
+        builder.Services.AddSingleton(GetRabbitMqConnection(eventBusConnection));
 
         // RabbitMQ.Client doesn't have built-in support for OpenTelemetry, so we need to add it ourselves
         builder.Services.AddOpenTelemetry()
@@ -36,7 +35,7 @@ public static class RabbitMqDependencyInjectionExtensions
            {
                tracing.AddSource(RabbitMQTelemetry.ActivitySourceName);
            });
-        
+
         // Options support
         builder.Services.Configure<EventBusOptions>(builder.Configuration.GetSection(SectionName));
 
@@ -50,14 +49,22 @@ public static class RabbitMqDependencyInjectionExtensions
         return new EventBusBuilder(builder.Services);
     }
 
-    private static IConnection GetRabbitMqConnection()
+    private static IConnection GetRabbitMqConnection(string eventBusConnection)
     {
-        ConnectionFactory factory = new ConnectionFactory();
-        factory.UserName = "guest";
-        factory.Password = "guest";
-        //factory.VirtualHost = "/vhost";
-        factory.HostName = "rabbitmq";
-        factory.Port = 5672;
+        ConnectionFactory factory = new ConnectionFactory()
+        {
+            Uri = new Uri(eventBusConnection),
+            RequestedHeartbeat = new TimeSpan(0,0,15),
+            //every N seconds the server will send a heartbeat.  If the connection does not receive a heartbeat within
+            //N*2 then the connection is considered dead.
+            //suggested from http://public.hudl.com/bits/archives/2013/11/11/c-rabbitmq-happy-servers/
+            AutomaticRecoveryEnabled = true
+        };
+        //factory.UserName = "guest";
+        //factory.Password = "guest";
+        ////factory.VirtualHost = "/vhost";
+        //factory.HostName = "rabbitmq";
+        //factory.Port = 5672;
         return factory.CreateConnection();
     }
 
